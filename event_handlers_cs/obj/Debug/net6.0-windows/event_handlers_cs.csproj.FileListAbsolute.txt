@@ -1,0 +1,17 @@
+C:\Users\mrcru\source\repos\event_handlers_cs\bin\Debug\net6.0-windows\event_handlers_cs.exe
+C:\Users\mrcru\source\repos\event_handlers_cs\bin\Debug\net6.0-windows\event_handlers_cs.deps.json
+C:\Users\mrcru\source\repos\event_handlers_cs\bin\Debug\net6.0-windows\event_handlers_cs.runtimeconfig.json
+C:\Users\mrcru\source\repos\event_handlers_cs\bin\Debug\net6.0-windows\event_handlers_cs.dll
+C:\Users\mrcru\source\repos\event_handlers_cs\bin\Debug\net6.0-windows\event_handlers_cs.pdb
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.csproj.AssemblyReference.cache
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.Form1.resources
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.csproj.GenerateResource.cache
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.AssemblyInfoInputs.cache
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.AssemblyInfo.cs
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.csproj.CoreCompileInputs.cache
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.dll
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\refint\event_handlers_cs.dll
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.pdb
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\event_handlers_cs.genruntimeconfig.cache
+C:\Users\mrcru\source\repos\event_handlers_cs\obj\Debug\net6.0-windows\ref\event_handlers_cs.dll
