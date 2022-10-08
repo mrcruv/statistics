@@ -17,7 +17,7 @@ namespace random_and_timer_cs
         private readonly int interval = 1500;
         private readonly int precision = 1;
         private static readonly int defaultN = 4;
-        private static int n_data = defaultN;
+        private int n_data = defaultN;
         private int[] current_data;
         private float current_mean = 0.0f;
 
@@ -37,7 +37,7 @@ namespace random_and_timer_cs
         private void GenerateDataAndComputeMean()
         {
             this.InitDataAndMean();
-            for (int i = 0; i < n_data; i++)
+            for (int i = 0; i < this.n_data; i++)
             {
                 var current_data = this.generator.Next(0, 100);
                 this.current_data[i] = current_data;
@@ -89,7 +89,7 @@ namespace random_and_timer_cs
             }
             else
             {
-                n_data = (int)this.numericUpDown1.Value;
+                this.n_data = (int)this.numericUpDown1.Value;
             }
         }
 
