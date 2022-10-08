@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mrcru\\source\\repos\\event_handlers_cs\\event_handlers_cs.csproj": {}
+    "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_cs\\event_handlers_cs.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mrcru\\source\\repos\\event_handlers_cs\\event_handlers_cs.csproj": {
+    "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_cs\\event_handlers_cs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mrcru\\source\\repos\\event_handlers_cs\\event_handlers_cs.csproj",
+        "projectUniqueName": "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_cs\\event_handlers_cs.csproj",
         "projectName": "event_handlers_cs",
-        "projectPath": "C:\\Users\\mrcru\\source\\repos\\event_handlers_cs\\event_handlers_cs.csproj",
+        "projectPath": "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_cs\\event_handlers_cs.csproj",
         "packagesPath": "C:\\Users\\mrcru\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mrcru\\source\\repos\\event_handlers_cs\\obj\\",
+        "outputPath": "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_cs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mrcru\\AppData\\Roaming\\NuGet\\NuGet.Config",

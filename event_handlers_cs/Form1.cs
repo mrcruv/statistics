@@ -36,5 +36,10 @@ namespace event_handlers_cs
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

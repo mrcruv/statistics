@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mrcru\\source\\repos\\event_handlers_vb\\event_handlers_vb.vbproj",
+      "projectUniqueName": "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_vb\\event_handlers_vb.vbproj",
       "projectName": "event_handlers_vb",
-      "projectPath": "C:\\Users\\mrcru\\source\\repos\\event_handlers_vb\\event_handlers_vb.vbproj",
+      "projectPath": "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_vb\\event_handlers_vb.vbproj",
       "packagesPath": "C:\\Users\\mrcru\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mrcru\\source\\repos\\event_handlers_vb\\obj\\",
+      "outputPath": "C:\\Users\\mrcru\\source\\repos\\statistics\\event_handlers_vb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mrcru\\AppData\\Roaming\\NuGet\\NuGet.Config",
