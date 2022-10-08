@@ -1,0 +1,11 @@
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\bin\Debug\simple_CSV_parser_cs.exe.config
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\bin\Debug\simple_CSV_parser_cs.exe
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\bin\Debug\simple_CSV_parser_cs.pdb
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.csproj.AssemblyReference.cache
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.csproj.SuggestedBindingRedirects.cache
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.Form1.resources
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.Properties.Resources.resources
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.csproj.GenerateResource.cache
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.csproj.CoreCompileInputs.cache
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.exe
+C:\Users\mrcru\source\repos\statistics\simple_CSV_parser_cs\obj\Debug\simple_CSV_parser_cs.pdb
