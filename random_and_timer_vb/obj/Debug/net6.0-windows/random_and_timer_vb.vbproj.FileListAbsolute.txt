@@ -1,0 +1,17 @@
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.vbproj.AssemblyReference.cache
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.Form1.resources
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.vbproj.GenerateResource.cache
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.AssemblyInfoInputs.cache
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.AssemblyInfo.vb
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.vbproj.CoreCompileInputs.cache
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\bin\Debug\net6.0-windows\random_and_timer_vb.exe
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\bin\Debug\net6.0-windows\random_and_timer_vb.deps.json
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\bin\Debug\net6.0-windows\random_and_timer_vb.runtimeconfig.json
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\bin\Debug\net6.0-windows\random_and_timer_vb.dll
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\bin\Debug\net6.0-windows\random_and_timer_vb.pdb
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.dll
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\refint\random_and_timer_vb.dll
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.pdb
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\random_and_timer_vb.genruntimeconfig.cache
+C:\Users\mrcru\source\repos\statistics\random_and_timer_vb\obj\Debug\net6.0-windows\ref\random_and_timer_vb.dll
