@@ -13,7 +13,6 @@ namespace random_and_timer_cs
     public partial class Form1 : Form
     {
         private readonly Random generator = new Random();
-        private readonly Timer timer = new Timer();
         private readonly int interval = 1500;
         private readonly int precision = 1;
         private static readonly int defaultN = 4;
