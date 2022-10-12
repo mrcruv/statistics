@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,9 +21,29 @@ namespace simple_CSV_parser_cs
         private bool sanitize = sanitizeDefault;
         private static readonly bool lowercaseDefault = true;
         private bool lowercase = lowercaseDefault;
+        private int variable_number = 0;
+        private readonly int precision = 1;
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private Hashtable RelativeFrequency(int variable_number)
+        {
+            Hashtable frequencies = new Hashtable();
+            for (int i = 0; i < n_data; i++)
+            {
+                var current_value = data[i, variable_number];
+                if (frequencies.ContainsKey(current_value))
+                {
+                    frequencies[current_value] = (int)frequencies[current_value] + 1;
+                }
+                else
+                {
+                    frequencies.Add(current_value, 1);
+                }
+            }
+            return frequencies;
         }
 
         private static string SanitizeString(string str)
@@ -85,11 +107,22 @@ namespace simple_CSV_parser_cs
                 this.data[i, this.n_variables - 1] = ProcessString(current_line[this.n_variables - 1], this.sanitize, this.lowercase);
                 this.richTextBox1.Text += this.data[i, this.n_variables - 1] + "\n";
             }
+
+            this.variable_number = 0;
+            this.comboBox1.Items.AddRange(this.header);
+            this.comboBox1.Enabled = true;
+            this.comboBox1.SelectedIndex = this.variable_number;
+            this.button3.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.variable_number = 0;
             this.richTextBox1.Clear();
+            this.comboBox1.Items.Clear();
+            this.comboBox1.Enabled = false;
+            this.comboBox1.ResetText();
+            this.button3.Enabled = false;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -100,6 +133,23 @@ namespace simple_CSV_parser_cs
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             this.lowercase = checkBox2.Checked;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var variable = this.comboBox1.Text;
+            this.variable_number = Array.IndexOf(this.header, variable);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var frequencies = this.RelativeFrequency(this.variable_number);
+            this.richTextBox1.Text += "\nRELATIVE FREQUENCY WITH RESPECT TO THE VARIABLE " + this.header[this.variable_number] + "\n";
+            foreach (string key in frequencies.Keys)
+            {
+                this.richTextBox1.Text += key + ": " + frequencies[key] + "/" + this.n_data;
+                this.richTextBox1.Text += "≈" + ((int)frequencies[key] * 100 / (double)this.n_data).ToString("n" + this.precision) + "%" + "\n";
+            }
         }
     }
 }
