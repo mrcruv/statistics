@@ -17,10 +17,12 @@ namespace simple_CSV_parser_cs
         private int n_variables = 0;
         private string[] header;
         private string[,] data;
-        private static readonly bool sanitizeDefault = false;
-        private bool sanitize = sanitizeDefault;
-        private static readonly bool lowercaseDefault = true;
-        private bool lowercase = lowercaseDefault;
+        private static readonly bool double_quotes_as_delimiter_default = true;
+        private bool double_quotes_as_delimiter = double_quotes_as_delimiter_default;
+        private static readonly bool lowercase_default = true;
+        private bool lowercase = lowercase_default;
+        private static readonly bool show_dataset_default = false;
+        private bool show_dataset = show_dataset_default;
         private int variable_number = 0;
         private readonly int precision = 1;
         public Form1()
@@ -46,14 +48,17 @@ namespace simple_CSV_parser_cs
             return frequencies;
         }
 
-        private static string SanitizeString(string str)
+        private static string SanitizeString(string str, bool double_quotes_as_delimiter)
         {
             var result = str.Trim();
-            var length = result.Length;
-            if (length >= 2)
+            if (double_quotes_as_delimiter)
             {
-                result = str.Remove(length - 1, 1);
-                result = result.Remove(0, 1);
+                var length = result.Length;
+                if (result[0] == '\"' && result[length - 1] == '\"')
+                {
+                    result = str.Remove(length - 1, 1);
+                    result = result.Remove(0, 1);
+                }
             }
             return result;
         }
@@ -64,12 +69,12 @@ namespace simple_CSV_parser_cs
             return result;
         }
 
-        private static string ProcessString(string str, bool sanitize, bool lowercase)
+        private static string ProcessString(string str, bool double_quotes_as_delimiter, bool lowercase)
         {
             var result = str;
-            if (sanitize)
+            if (double_quotes_as_delimiter)
             {
-                result = SanitizeString(result);
+                result = SanitizeString(result, double_quotes_as_delimiter);
             }
             if (lowercase)
             {
@@ -81,33 +86,49 @@ namespace simple_CSV_parser_cs
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.richTextBox1.Text += "***** begin CSV parsing *****\n";
             this.lines = File.ReadAllLines(this.file_name);
             this.n_data = this.lines.Count() - 1;
             this.header = this.lines[0].Split(this.separator);
             this.n_variables = this.header.Count();
             this.data = new string[this.n_data, this.n_variables];
-            this.richTextBox1.Text += "# VARIABLES: " + this.n_variables + "\n";
-            this.richTextBox1.Text += "# DATA: " + this.n_data + "\n";
-            this.richTextBox1.Text += "HEADER: ";
-            for (int i = 0; i < this.n_variables - 1; i++)
-            {
-                this.header[i] = ProcessString(this.header[i], this.sanitize, this.lowercase);
-                this.richTextBox1.Text += this.header[i] + ", ";
-            }
-            this.header[this.n_variables - 1] = ProcessString(this.header[this.n_variables - 1], this.sanitize, this.lowercase);
-            this.richTextBox1.Text += this.header[this.n_variables - 1] + "\n";
-            for (int i = 0; i < this.n_data; i++)
-            {
-                var current_line = this.lines[i + 1].Split(this.separator);
-                for (int j = 0; j < this.n_variables - 1; j++)
+
+                for (int i = 0; i < this.n_variables - 1; i++)
                 {
-                    this.data[i, j] = ProcessString(current_line[j], this.sanitize, this.lowercase);
-                    this.richTextBox1.Text += this.data[i, j] + ", ";
+                    this.header[i] = ProcessString(this.header[i], this.double_quotes_as_delimiter, this.lowercase);
                 }
-                this.data[i, this.n_variables - 1] = ProcessString(current_line[this.n_variables - 1], this.sanitize, this.lowercase);
-                this.richTextBox1.Text += this.data[i, this.n_variables - 1] + "\n";
+                this.header[this.n_variables - 1] = ProcessString(this.header[this.n_variables - 1], this.double_quotes_as_delimiter, this.lowercase);
+                for (int i = 0; i < this.n_data; i++)
+                {
+                    var current_line = this.lines[i + 1].Split(this.separator);
+                    for (int j = 0; j < this.n_variables - 1; j++)
+                    {
+                        this.data[i, j] = ProcessString(current_line[j], this.double_quotes_as_delimiter, this.lowercase);
+                    }
+                    this.data[i, this.n_variables - 1] = ProcessString(current_line[this.n_variables - 1], this.double_quotes_as_delimiter, this.lowercase);
+                }
+
+            if (this.show_dataset)
+            {
+                this.richTextBox1.Text += "# VARIABLES: " + this.n_variables + "\n";
+                this.richTextBox1.Text += "# DATA: " + this.n_data + "\n";
+                this.richTextBox1.Text += "HEADER: ";
+                for (int i = 0; i < this.n_variables - 1; i++)
+                {
+                    this.richTextBox1.Text += this.header[i] + ", ";
+                }
+                this.richTextBox1.Text += this.header[this.n_variables - 1] + "\n\n";
+                for (int i = 0; i < this.n_data; i++)
+                {
+                    for (int j = 0; j < this.n_variables - 1; j++)
+                    {
+                        this.richTextBox1.Text += this.data[i, j] + ", ";
+                    }
+                    this.richTextBox1.Text += this.data[i, this.n_variables - 1] + "\n";
+                }
             }
 
+            this.richTextBox1.Text += "***** CSV correctly parsed *****\n";
             this.variable_number = 0;
             this.comboBox1.Items.AddRange(this.header);
             this.comboBox1.Enabled = true;
@@ -127,7 +148,7 @@ namespace simple_CSV_parser_cs
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            this.sanitize = checkBox1.Checked;
+            this.double_quotes_as_delimiter = checkBox1.Checked;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -150,6 +171,26 @@ namespace simple_CSV_parser_cs
                 this.richTextBox1.Text += key + ": " + frequencies[key] + "/" + this.n_data;
                 this.richTextBox1.Text += "≈" + ((int)frequencies[key] * 100 / (double)this.n_data).ToString("n" + this.precision) + "%" + "\n";
             }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            this.show_dataset = checkBox3.Checked;
         }
     }
 }

@@ -35,6 +35,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -64,6 +65,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(1072, 518);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // checkBox1
             // 
@@ -74,6 +76,7 @@
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "DOUBLE QUOTES AS DELIMITER";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Checked = Form1.double_quotes_as_delimiter_default;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
@@ -85,34 +88,48 @@
             this.checkBox2.TabIndex = 4;
             this.checkBox2.Text = "MAKE STRINGS LOWERCASE";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Checked = Form1.lowercase_default;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // comboBox1
             // 
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(827, 25);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 5;
-            this.comboBox1.Enabled = false;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(954, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(130, 44);
             this.button3.TabIndex = 6;
             this.button3.Text = "COMPUTE RELATIVE FREQUENCY";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Enabled = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(377, 12);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(113, 17);
+            this.checkBox3.TabIndex = 7;
+            this.checkBox3.Text = "SHOW DATASET";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Checked = Form1.show_dataset_default;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 592);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox2);
@@ -121,7 +138,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "A3";
+            this.Text = "A4";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +153,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 
