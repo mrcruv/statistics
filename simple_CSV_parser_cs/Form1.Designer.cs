@@ -35,7 +35,10 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -60,9 +63,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 62);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 478);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1072, 518);
+            this.richTextBox1.Size = new System.Drawing.Size(1072, 102);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -76,7 +79,6 @@
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "DOUBLE QUOTES AS DELIMITER";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Checked = Form1.double_quotes_as_delimiter_default;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
@@ -88,7 +90,6 @@
             this.checkBox2.TabIndex = 4;
             this.checkBox2.Text = "MAKE STRINGS LOWERCASE";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.Checked = Form1.lowercase_default;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // comboBox1
@@ -112,24 +113,30 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // checkBox3
+            // dataGridView1
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(377, 12);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(113, 17);
-            this.checkBox3.TabIndex = 7;
-            this.checkBox3.Text = "SHOW DATASET";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.Checked = Form1.show_dataset_default;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 62);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(763, 410);
+            this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(820, 62);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(264, 410);
+            this.dataGridView2.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 592);
-            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox2);
@@ -139,6 +146,8 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "A4";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,7 +162,8 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 

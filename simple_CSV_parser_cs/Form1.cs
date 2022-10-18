@@ -21,10 +21,9 @@ namespace simple_CSV_parser_cs
         private bool double_quotes_as_delimiter = double_quotes_as_delimiter_default;
         private static readonly bool lowercase_default = true;
         private bool lowercase = lowercase_default;
-        private static readonly bool show_dataset_default = false;
-        private bool show_dataset = show_dataset_default;
         private int variable_number = 0;
         private readonly int precision = 1;
+        private readonly string log_delimiter = "*****";
         public Form1()
         {
             InitializeComponent();
@@ -86,7 +85,7 @@ namespace simple_CSV_parser_cs
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.richTextBox1.Text += "***** begin CSV parsing *****\n";
+            this.richTextBox1.Text += $"{this.log_delimiter} begin CSV parsing {this.log_delimiter}\n";
             this.lines = File.ReadAllLines(this.file_name);
             this.n_data = this.lines.Count() - 1;
             this.header = this.lines[0].Split(this.separator);
@@ -108,27 +107,21 @@ namespace simple_CSV_parser_cs
                     this.data[i, this.n_variables - 1] = ProcessString(current_line[this.n_variables - 1], this.double_quotes_as_delimiter, this.lowercase);
                 }
 
-            if (this.show_dataset)
+            this.dataGridView1.ColumnCount = this.n_variables;
+            this.dataGridView1.RowCount = this.n_data;
+            for (int i = 0; i < this.n_variables; i++)
             {
-                this.richTextBox1.Text += "# VARIABLES: " + this.n_variables + "\n";
-                this.richTextBox1.Text += "# DATA: " + this.n_data + "\n";
-                this.richTextBox1.Text += "HEADER: ";
-                for (int i = 0; i < this.n_variables - 1; i++)
+                this.dataGridView1.Columns[i].Name = this.header[i];
+            }
+            for (int i = 0; i < this.n_data; i++)
+            {
+                for (int j = 0; j < this.n_variables; j++)
                 {
-                    this.richTextBox1.Text += this.header[i] + ", ";
-                }
-                this.richTextBox1.Text += this.header[this.n_variables - 1] + "\n\n";
-                for (int i = 0; i < this.n_data; i++)
-                {
-                    for (int j = 0; j < this.n_variables - 1; j++)
-                    {
-                        this.richTextBox1.Text += this.data[i, j] + ", ";
-                    }
-                    this.richTextBox1.Text += this.data[i, this.n_variables - 1] + "\n";
+                    this.dataGridView1[j, i].Value = (this.data[i, j]);
                 }
             }
 
-            this.richTextBox1.Text += "***** CSV correctly parsed *****\n";
+            this.richTextBox1.Text += $"{this.log_delimiter} CSV succesfully parsed {this.log_delimiter}\n";
             this.variable_number = 0;
             this.comboBox1.Items.AddRange(this.header);
             this.comboBox1.Enabled = true;
@@ -144,6 +137,10 @@ namespace simple_CSV_parser_cs
             this.comboBox1.Enabled = false;
             this.comboBox1.ResetText();
             this.button3.Enabled = false;
+            this.dataGridView1.Columns.Clear();
+            this.dataGridView1.Rows.Clear();
+            this.dataGridView2.Columns.Clear();
+            this.dataGridView2.Rows.Clear();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -164,12 +161,19 @@ namespace simple_CSV_parser_cs
 
         private void button3_Click(object sender, EventArgs e)
         {
+            var variable_name = this.header[this.variable_number];
+            this.richTextBox1.Text += $"{this.log_delimiter} begin relative frequency ({variable_name}) computation {this.log_delimiter}" + "\n";
             var frequencies = this.RelativeFrequency(this.variable_number);
-            this.richTextBox1.Text += "\nRELATIVE FREQUENCY WITH RESPECT TO THE VARIABLE " + this.header[this.variable_number] + "\n";
+            this.richTextBox1.Text += $"{this.log_delimiter} relative frequency ({variable_name}) succesfully computed {this.log_delimiter}" + "\n";
+            this.dataGridView2.Columns.Clear();
+            this.dataGridView2.Rows.Clear();
+            this.dataGridView2.ColumnCount = 2;
+            this.dataGridView2.Columns[0].Name = variable_name;
+            this.dataGridView2.Columns[1].Name = "frequency";
             foreach (string key in frequencies.Keys)
             {
-                this.richTextBox1.Text += key + ": " + frequencies[key] + "/" + this.n_data;
-                this.richTextBox1.Text += "≈" + ((int)frequencies[key] * 100 / (double)this.n_data).ToString("n" + this.precision) + "%" + "\n";
+                var percentage = frequencies[key] + "/" + this.n_data + " ≈ " + ((int)frequencies[key] * 100 / (double)this.n_data).ToString("n" + this.precision) + "%";
+                this.dataGridView2.Rows.Add(key, percentage);
             }
         }
 
@@ -188,9 +192,9 @@ namespace simple_CSV_parser_cs
 
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.show_dataset = checkBox3.Checked;
+
         }
     }
 }
