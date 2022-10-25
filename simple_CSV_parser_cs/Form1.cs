@@ -12,29 +12,34 @@ namespace simple_CSV_parser_cs
     {
         private readonly char separator = ',';
         private string[] lines;
-        private string file_name = "data.csv";
+        private readonly string file_name = "data.csv";
         private int n_data = 0;
         private int n_variables = 0;
         private string[] header;
         private string[,] data;
-        private static readonly bool double_quotes_as_delimiter_default = true;
-        private bool double_quotes_as_delimiter = double_quotes_as_delimiter_default;
-        private static readonly bool lowercase_default = true;
-        private bool lowercase = lowercase_default;
+        private bool double_quotes_as_delimiter;
+        private bool lowercase;
         private int variable_number = 0;
         private readonly int precision = 1;
         private readonly string log_delimiter = "*****";
         public Form1()
         {
             InitializeComponent();
+            this.set_defaults();
+        }
+
+        private void set_defaults()
+        {
+            this.double_quotes_as_delimiter = this.checkBox1.Checked;
+            this.lowercase = this.checkBox2.Checked;
         }
 
         private Hashtable RelativeFrequency(int variable_number)
         {
             Hashtable frequencies = new Hashtable();
-            for (int i = 0; i < n_data; i++)
+            for (int i = 0; i < this.n_data; i++)
             {
-                var current_value = data[i, variable_number];
+                var current_value = this.data[i, variable_number];
                 if (frequencies.ContainsKey(current_value))
                 {
                     frequencies[current_value] = (int)frequencies[current_value] + 1;
@@ -45,6 +50,29 @@ namespace simple_CSV_parser_cs
                 }
             }
             return frequencies;
+        }
+
+        private Hashtable BiRelativeFrequency(int variable1_number, int variable2_number)
+        {
+            Hashtable frequencies = new Hashtable();
+            for (int i = 0; i < this.n_data; i++)
+            {
+                var current_value1 = this.data[i, variable1_number];
+                var current_value2 = this.data[i, variable2_number];
+                string[] key = new string[2];
+                key[0] = current_value1;
+                key[1] = current_value2;
+
+                if (frequencies.ContainsKey((current_value1, current_value2)))
+                {
+                    frequencies[key] = (int)frequencies[key] + 1;
+                }
+                else
+                {
+                    frequencies.Add(key, 1);
+                }
+            }
+            return frequencies; 
         }
 
         private static string SanitizeString(string str, bool double_quotes_as_delimiter)
@@ -145,12 +173,12 @@ namespace simple_CSV_parser_cs
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            this.double_quotes_as_delimiter = checkBox1.Checked;
+            this.double_quotes_as_delimiter = this.checkBox1.Checked;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            this.lowercase = checkBox2.Checked;
+            this.lowercase = this.checkBox2.Checked;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
