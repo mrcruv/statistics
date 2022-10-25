@@ -14,6 +14,7 @@ namespace coin_toss_sequence_cs
         private readonly Random generator = new Random();
         private Bitmap bitmap1, bitmap2, bitmap3, bitmap4;
         private Graphics graphics1, graphics2, graphics3, graphics4;
+        private GraphicsPath graphics_path1, graphics_path2, graphics_path3;
         private readonly byte type = 1;
         private readonly string log_delimiter = "*****";
         public Form1()
@@ -36,16 +37,39 @@ namespace coin_toss_sequence_cs
             this.graphics4 = Graphics.FromImage(this.bitmap4);
         }
 
-        private void clear()
+        private void set_images()
         {
             this.pictureBox1.Image = this.bitmap1;
-            this.pictureBox1.Refresh();
             this.pictureBox2.Image = this.bitmap2;
-            this.pictureBox2.Refresh();
             this.pictureBox3.Image = this.bitmap3;
-            this.pictureBox3.Refresh();
             this.pictureBox4.Image = this.bitmap4;
+        }
+
+        private void refresh_graphics()
+        {
+            this.pictureBox2.Refresh();
+            this.pictureBox1.Refresh();
+            this.pictureBox3.Refresh();
             this.pictureBox4.Refresh();
+        }
+
+        private void clear_graphics()
+        {
+            this.pictureBox1.Image = null;
+            this.pictureBox1.Refresh();
+            this.pictureBox2.Image = null;
+            this.pictureBox2.Refresh();
+            this.pictureBox3.Image = null;
+            this.pictureBox3.Refresh();
+            this.pictureBox4.Image = null;
+            this.pictureBox4.Refresh();
+        }
+
+        private void draw_paths()
+        {
+            this.graphics1.DrawPath(Pens.Black, this.graphics_path1);
+            this.graphics2.DrawPath(Pens.Black, this.graphics_path2);
+            this.graphics3.DrawPath(Pens.Black, this.graphics_path3);
         }
 
         private float transform_x(float x, float x_min, float x_max, float width)
@@ -75,6 +99,7 @@ namespace coin_toss_sequence_cs
         private void button1_Click(object sender, EventArgs e)
         {
             this.initialize_attributes();
+            this.set_images();
             int[] n_success = new int[this.n_sequence], n_unsuccess = new int[this.n_sequence];
             this.progressBar1.Value = this.progressBar1.Minimum;
 
@@ -86,6 +111,7 @@ namespace coin_toss_sequence_cs
                 var points2 = new List<PointF>();
                 var points3 = new List<PointF>();
                 var types = new List<byte>();
+
                 for (int i = 0; i < this.n_tosses; i++)
                 {
                     n_success[j] += (int)this.toss();
@@ -106,15 +132,11 @@ namespace coin_toss_sequence_cs
                 }
                 n_unsuccess[j] = this.n_tosses - n_success[j];
 
-                var graphics_path1 = new GraphicsPath(points1.ToArray(), types.ToArray());
-                this.graphics1.DrawPath(Pens.Black, graphics_path1);
+                this.graphics_path1 = new GraphicsPath(points1.ToArray(), types.ToArray());
+                this.graphics_path2 = new GraphicsPath(points2.ToArray(), types.ToArray());
+                this.graphics_path3 = new GraphicsPath(points3.ToArray(), types.ToArray());
 
-                var graphics_path2 = new GraphicsPath(points2.ToArray(), types.ToArray());
-                this.graphics2.DrawPath(Pens.Black, graphics_path2);
-
-                var graphics_path3 = new GraphicsPath(points3.ToArray(), types.ToArray());
-                this.graphics3.DrawPath(Pens.Black, graphics_path3);
-
+                this.draw_paths();
                 this.richTextBox1.Text += $"{this.log_delimiter} ({j + 1}) frequency succesfully computed (#success = {n_success[j]}; #unsuccess = {n_unsuccess[j]}) {this.log_delimiter}\n";
                 this.progressBar1.Value = (int)Math.Round(((double)(j + 1) / (this.n_sequence)) * this.progressBar1.Maximum);
             }
@@ -151,7 +173,7 @@ namespace coin_toss_sequence_cs
                 this.progressBar1.Value = (int)Math.Round(((double)(i + 1) / (n_distinct_success)) * this.progressBar1.Maximum);
             }
             this.richTextBox1.Text += $"{this.log_delimiter} histogram succesfully computed {this.log_delimiter}\n";
-            this.clear();
+            this.refresh_graphics();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -174,14 +196,7 @@ namespace coin_toss_sequence_cs
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.pictureBox1.Image = null;
-            this.pictureBox1.Refresh();
-            this.pictureBox2.Image = null;
-            this.pictureBox2.Refresh();
-            this.pictureBox3.Image = null;
-            this.pictureBox3.Refresh();
-            this.pictureBox4.Image = null;
-            this.pictureBox4.Refresh();
+            this.clear_graphics();
             this.richTextBox1.Clear();
             this.progressBar1.Value = this.progressBar1.Minimum;
         }
