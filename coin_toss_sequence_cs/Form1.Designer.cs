@@ -104,7 +104,6 @@
             this.pictureBox3.Size = new System.Drawing.Size(300, 255);
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // label1
             // 
@@ -114,7 +113,6 @@
             this.label1.Size = new System.Drawing.Size(111, 15);
             this.label1.TabIndex = 7;
             this.label1.Text = "# COIN TOSSES: 100";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -124,7 +122,6 @@
             this.label2.Size = new System.Drawing.Size(156, 15);
             this.label2.TabIndex = 8;
             this.label2.Text = "SUCCESS PROBABILITY: 50%";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // richTextBox1
             // 

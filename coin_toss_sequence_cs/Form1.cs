@@ -47,8 +47,8 @@ namespace coin_toss_sequence_cs
 
         private void refresh_graphics()
         {
-            this.pictureBox2.Refresh();
             this.pictureBox1.Refresh();
+            this.pictureBox2.Refresh();
             this.pictureBox3.Refresh();
             this.pictureBox4.Refresh();
         }
@@ -137,7 +137,7 @@ namespace coin_toss_sequence_cs
                 this.graphics_path3 = new GraphicsPath(points3.ToArray(), types.ToArray());
 
                 this.draw_paths();
-                this.richTextBox1.Text += $"{this.log_delimiter} ({j + 1}) frequency succesfully computed (#success = {n_success[j]}; #unsuccess = {n_unsuccess[j]}) {this.log_delimiter}\n";
+                this.richTextBox1.Text += $"{this.log_delimiter} ({j + 1}) frequency successfully computed (#success = {n_success[j]}; #unsuccess = {n_unsuccess[j]}) {this.log_delimiter}\n";
                 this.progressBar1.Value = (int)Math.Round(((double)(j + 1) / (this.n_sequence)) * this.progressBar1.Maximum);
             }
             this.richTextBox1.Text += $"{this.log_delimiter} begin histogram computation {this.log_delimiter}\n";
@@ -172,7 +172,7 @@ namespace coin_toss_sequence_cs
                 this.graphics4.DrawRectangle(Pens.Black, success_bar);
                 this.progressBar1.Value = (int)Math.Round(((double)(i + 1) / (n_distinct_success)) * this.progressBar1.Maximum);
             }
-            this.richTextBox1.Text += $"{this.log_delimiter} histogram succesfully computed {this.log_delimiter}\n";
+            this.richTextBox1.Text += $"{this.log_delimiter} histogram successfully computed {this.log_delimiter}\n";
             this.refresh_graphics();
         }
 
@@ -199,21 +199,6 @@ namespace coin_toss_sequence_cs
             this.clear_graphics();
             this.richTextBox1.Clear();
             this.progressBar1.Value = this.progressBar1.Minimum;
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
