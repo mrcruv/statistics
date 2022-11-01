@@ -1,0 +1,11 @@
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.csproj.AssemblyReference.cache
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.csproj.SuggestedBindingRedirects.cache
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.Form1.resources
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.Properties.Resources.resources
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.csproj.GenerateResource.cache
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.csproj.CoreCompileInputs.cache
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\bin\Debug\histogram_from_distribution_cs.exe.config
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\bin\Debug\histogram_from_distribution_cs.exe
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\bin\Debug\histogram_from_distribution_cs.pdb
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.exe
+C:\Users\mrcru\source\repos\statistics\histogram_from_distribution_cs\obj\Debug\histogram_from_distribution_cs.pdb
