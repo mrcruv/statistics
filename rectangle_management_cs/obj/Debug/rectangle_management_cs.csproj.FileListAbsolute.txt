@@ -1,0 +1,11 @@
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\bin\Debug\rectangle_management_cs.exe.config
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\bin\Debug\rectangle_management_cs.exe
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\bin\Debug\rectangle_management_cs.pdb
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.csproj.AssemblyReference.cache
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.csproj.SuggestedBindingRedirects.cache
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.Form1.resources
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.Properties.Resources.resources
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.csproj.GenerateResource.cache
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.csproj.CoreCompileInputs.cache
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.exe
+C:\Users\mrcru\source\repos\statistics\rectangle_management_cs\obj\Debug\rectangle_management_cs.pdb
