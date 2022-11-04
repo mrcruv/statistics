@@ -30,9 +30,9 @@ namespace simple_CSV_parser_cs
         private static string SanitizeString(string str, bool double_quotes_as_delimiter)
         {
             var result = str.Trim();
-            if (double_quotes_as_delimiter)
+            var length = result.Length;
+            if (double_quotes_as_delimiter && length > 0)
             {
-                var length = result.Length;
                 if (result[0] == '\"' && result[length - 1] == '\"')
                 {
                     result = str.Remove(length - 1, 1);
