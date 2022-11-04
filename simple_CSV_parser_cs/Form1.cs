@@ -11,7 +11,6 @@ namespace simple_CSV_parser_cs
     public partial class Form1 : Form
     {
         private readonly char separator = ',';
-        private string[] lines;
         private readonly string file_name = "data.csv";
         private int n_data = 0;
         private int n_variables = 0;
@@ -21,6 +20,7 @@ namespace simple_CSV_parser_cs
         private bool lowercase;
         private int variable_number = 0;
         private readonly int precision = 1;
+        private CSVParser parser;
         private readonly string log_delimiter = "*****";
         public Form1()
         {
@@ -75,65 +75,15 @@ namespace simple_CSV_parser_cs
             return frequencies; 
         }
 
-        private static string SanitizeString(string str, bool double_quotes_as_delimiter)
-        {
-            var result = str.Trim();
-            if (double_quotes_as_delimiter)
-            {
-                var length = result.Length;
-                if (result[0] == '\"' && result[length - 1] == '\"')
-                {
-                    result = str.Remove(length - 1, 1);
-                    result = result.Remove(0, 1);
-                }
-            }
-            return result;
-        }
-
-        private static string EscapeDoubleQuotes(string str)
-        {
-            var result = str.Replace("\"\"", "\"");
-            return result;
-        }
-
-        private static string ProcessString(string str, bool double_quotes_as_delimiter, bool lowercase)
-        {
-            var result = str;
-            if (double_quotes_as_delimiter)
-            {
-                result = SanitizeString(result, double_quotes_as_delimiter);
-            }
-            if (lowercase)
-            {
-                result = result.ToLower();
-            }
-            result = EscapeDoubleQuotes(result);
-            return result;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            this.parser = new CSVParser(this.separator, this.double_quotes_as_delimiter, this.lowercase);
             this.richTextBox1.Text += $"{this.log_delimiter} begin CSV parsing {this.log_delimiter}\n";
-            this.lines = File.ReadAllLines(this.file_name);
-            this.n_data = this.lines.Count() - 1;
-            this.header = this.lines[0].Split(this.separator);
-            this.n_variables = this.header.Count();
-            this.data = new string[this.n_data, this.n_variables];
-
-                for (int i = 0; i < this.n_variables - 1; i++)
-                {
-                    this.header[i] = ProcessString(this.header[i], this.double_quotes_as_delimiter, this.lowercase);
-                }
-                this.header[this.n_variables - 1] = ProcessString(this.header[this.n_variables - 1], this.double_quotes_as_delimiter, this.lowercase);
-                for (int i = 0; i < this.n_data; i++)
-                {
-                    var current_line = this.lines[i + 1].Split(this.separator);
-                    for (int j = 0; j < this.n_variables - 1; j++)
-                    {
-                        this.data[i, j] = ProcessString(current_line[j], this.double_quotes_as_delimiter, this.lowercase);
-                    }
-                    this.data[i, this.n_variables - 1] = ProcessString(current_line[this.n_variables - 1], this.double_quotes_as_delimiter, this.lowercase);
-                }
+            parser.parse(this.file_name);
+            this.n_data = this.parser.getNData();
+            this.header = this.parser.getHeader();
+            this.n_variables = this.parser.getNVariables();
+            this.data = this.parser.getData();
 
             this.dataGridView1.ColumnCount = this.n_variables;
             this.dataGridView1.RowCount = this.n_data;
@@ -148,7 +98,6 @@ namespace simple_CSV_parser_cs
                     this.dataGridView1[j, i].Value = (this.data[i, j]);
                 }
             }
-
             this.richTextBox1.Text += $"{this.log_delimiter} CSV succesfully parsed {this.log_delimiter}\n";
             this.variable_number = 0;
             this.comboBox1.Items.AddRange(this.header);
@@ -203,26 +152,6 @@ namespace simple_CSV_parser_cs
                 var percentage = frequencies[key] + "/" + this.n_data + " ≈ " + ((int)frequencies[key] * 100 / (double)this.n_data).ToString("n" + this.precision) + "%";
                 this.dataGridView2.Rows.Add(key, percentage);
             }
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
