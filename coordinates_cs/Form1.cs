@@ -154,6 +154,33 @@ namespace coordinates_cs
             return n_intervals - 1;
         }
 
+        private float variance(float[] values, float mean)
+        {
+            float variance = 0;
+            var n = values.Count();
+            for (int i = 0; i < n; i++)
+            {
+                variance = (float)variance * i + (float)Math.Pow(mean - values[i], 2);
+                variance /= i + 1;
+            }
+            return variance;
+        }
+
+        private float normalize_value(float value, float mean, float variance)
+        {
+            var normalized_value = (value - mean) / (float)Math.Sqrt(variance);
+            return normalized_value;
+        }
+
+        private void normalize_values(float[] values, float mean, float variance)
+        {
+            var n = values.Count();
+            for (int i = 0; i < n; i++)
+            {
+                values[i] = (values[i] - mean) / (float)Math.Sqrt(variance);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.initialize_graphics();
@@ -163,18 +190,37 @@ namespace coordinates_cs
             this.quadrant_distribution = new Hashtable();
             this.x_distribution = new Hashtable();
             this.y_distribution = new Hashtable();
+            var x_coordinates = new float[this.n_coordinates];
+            var y_coordinates = new float[this.n_coordinates];
 
             for (int i = 0; i < this.n_coordinates; i++)
             {
                 this.polar_coordinates[i] = this.generate_polar_coordinates();
                 this.cartesian_coordinates[i] = this.get_cartesian_coordinates(this.polar_coordinates[i]);
-                var x = this.cartesian_coordinates[i].Item1;
-                var y = this.cartesian_coordinates[i].Item2;
-                var transformed_x = this.transform_x(x, -1, 1, this.pictureBox1.Width);
-                var transformed_y = this.transform_y(y, -1, 1, this.pictureBox1.Height);
+                x_coordinates[i] = this.cartesian_coordinates[i].Item1;
+                y_coordinates[i] = this.cartesian_coordinates[i].Item2;
+            }
+
+            var x_mean = x_coordinates.Average();
+            var y_mean = y_coordinates.Average();
+            var x_variance = this.variance(x_coordinates, x_mean);
+            var y_variance = this.variance(y_coordinates, y_mean);
+            this.normalize_values(x_coordinates, x_mean, x_variance);
+            this.normalize_values(y_coordinates, y_mean, y_variance);
+            var x_max = x_coordinates.Max();
+            var x_min = x_coordinates.Min();
+            var y_max = y_coordinates.Max();
+            var y_min = y_coordinates.Min();
+
+            for (int i = 0; i < this.n_coordinates; i++)
+            {
+                var x = x_coordinates[i];
+                var y = y_coordinates[i];
+                var transformed_x = this.transform_x(x, x_min, x_max, this.pictureBox1.Width);
+                var transformed_y = this.transform_y(y, y_min, y_max, this.pictureBox1.Height);
                 var quadrant = this.get_quadrant(this.cartesian_coordinates[i]);
-                var x_interval = this.get_interval(x, -1, 1, this.n_intervals);
-                var y_interval = this.get_interval(y, -1, 1, this.n_intervals);
+                var x_interval = this.get_interval(x, x_min, x_max, this.n_intervals);
+                var y_interval = this.get_interval(y, y_min, y_max, this.n_intervals);
                 graphics1.FillRectangle(Brushes.Black, transformed_x, transformed_y, 1, 1);
                 this.update_distribution(this.quadrant_distribution, quadrant);
                 this.update_distribution(this.x_distribution, x_interval);
