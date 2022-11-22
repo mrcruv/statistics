@@ -180,7 +180,7 @@ namespace distributions_simulations_cs
         private void normalize_values(float[] values, float mean, float variance)
         {
             var n = values.Count();
-            for (int i = 0; i < n_degrees_1; i++)
+            for (int i = 0; i < n; i++)
             {
                 values[i] = (values[i] - mean) / (float)Math.Sqrt(variance);
             }
@@ -200,7 +200,7 @@ namespace distributions_simulations_cs
                 // NORMAL DISTRIBUTION
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_normal_value();
             }
-            else if (this.distribution_type.Equals("CHI SQUARED"))
+            else if (this.distribution_type.Equals("CHI-SQUARED"))
             {
                 // CHI SQUARED DISTRIBUTION
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_chi_squared_value(this.n_degrees_1);
@@ -296,7 +296,7 @@ namespace distributions_simulations_cs
                 this.trackBar2.Enabled = false;
                 this.trackBar3.Enabled = false;
             }
-            else if (this.distribution_type.Equals("STUDENT'S T") || this.distribution_type.Equals("CHI SQUARED"))
+            else if (this.distribution_type.Equals("STUDENT'S T") || this.distribution_type.Equals("CHI-SQUARED"))
             {
                 this.trackBar2.Enabled = true;
                 this.trackBar3.Enabled = false;

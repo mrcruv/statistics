@@ -150,7 +150,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "NORMAL",
-            "CHI SQUARED",
+            "CHI-SQUARED",
             "STUDENT\'S T",
             "FISHER\'S F",
             "CAUCHY"});
