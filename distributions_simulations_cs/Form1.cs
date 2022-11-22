@@ -165,6 +165,27 @@ namespace distributions_simulations_cs
             return n_intervals - 1;
         }
 
+        private float variance(float[] values, float mean)
+        {
+            float variance = 0;
+            var n = values.Count();
+            for (int i = 0; i < n; i++)
+            {
+                variance = (float)variance * i + (float)Math.Pow(mean - values[i], 2);
+                variance /= i + 1;
+            }
+            return variance;
+        }
+
+        private void normalize_values(float[] values, float mean, float variance)
+        {
+            var n = values.Count();
+            for (int i = 0; i < n_degrees_1; i++)
+            {
+                values[i] = (values[i] - mean) / (float)Math.Sqrt(variance);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.initialize_graphics();
@@ -204,6 +225,9 @@ namespace distributions_simulations_cs
                 return;
             }
 
+            var mean = this.values.Average();
+            var variance = this.variance(values, mean);
+            this.normalize_values(this.values, mean, variance);
             var max = this.values.Max();
             var min = this.values.Min();
             for (int i = 0; i < this.n_values; i++)
