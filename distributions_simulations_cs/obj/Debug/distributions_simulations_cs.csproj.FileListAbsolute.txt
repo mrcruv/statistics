@@ -1,0 +1,11 @@
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.csproj.AssemblyReference.cache
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.csproj.SuggestedBindingRedirects.cache
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.Form1.resources
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.Properties.Resources.resources
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.csproj.GenerateResource.cache
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.csproj.CoreCompileInputs.cache
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\bin\Debug\distributions_simulations_cs.exe.config
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\bin\Debug\distributions_simulations_cs.exe
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\bin\Debug\distributions_simulations_cs.pdb
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.exe
+C:\Users\mrcru\source\repos\statistics\distributions_simulations_cs\obj\Debug\distributions_simulations_cs.pdb
