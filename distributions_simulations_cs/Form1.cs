@@ -22,10 +22,10 @@ namespace distributions_simulations_cs
         private int n_intervals;
         private int n_degrees_1;
         private int n_degrees_2;
-        private Random generator = new Random();
+        private readonly Random generator = new Random();
         private Bitmap bitmap1;
         private Graphics graphics1;
-        private string delimiter = "*****";
+        private readonly string delimiter = "*****";
 
         public Form1()
         {
@@ -99,10 +99,16 @@ namespace distributions_simulations_cs
 
         private float generate_normal_value()
         {
-            float uniform_value_1 = (float)this.generator.NextDouble();
-            float uniform_value_2 = (float)this.generator.NextDouble();
-            float normal_value = Math.Abs(uniform_value_1 * (float)Math.Cos(uniform_value_2));
+            float normal_value = 0.0f;
+            for (int i = 0; i < 10; i++)
+            {
+                float uniform_value = (float)this.generator.NextDouble();
+                normal_value += uniform_value;
+            }
             return normal_value;
+
+            // otherwise:
+            // return this.generate_iid_normal_values().Item1;
         }
         private float generate_chi_squared_value(int n_degrees)
         {
@@ -195,29 +201,30 @@ namespace distributions_simulations_cs
             this.distribution = new Hashtable();
 
             this.richTextBox1.Text += $"{this.delimiter}begin {distribution_type.ToLower()} distribution computation{this.delimiter}\n";
+            this.richTextBox1.Text += $"{this.delimiter}{this.n_values} samples, {this.n_intervals} intervals";
             if (this.distribution_type.Equals("NORMAL"))
             {
-                // NORMAL DISTRIBUTION
+                this.richTextBox1.Text += $"{this.delimiter}\n";
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_normal_value();
             }
             else if (this.distribution_type.Equals("CHI-SQUARED"))
             {
-                // CHI SQUARED DISTRIBUTION
+                this.richTextBox1.Text += $", {this.n_degrees_1} degrees of freedom{this.delimiter}\n";
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_chi_squared_value(this.n_degrees_1);
             }
             else if (this.distribution_type.Equals("STUDENT'S T"))
             {
-                // STUDENT'S T DISTRIBUTION
+                this.richTextBox1.Text += $", {this.n_degrees_1} degrees of freedom{this.delimiter}\n";
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_students_t_value(this.n_degrees_1);
             }
             else if (this.distribution_type.Equals("FISHER'S F"))
             {
-                // FISHER'S F DISTRIBUTION
+                this.richTextBox1.Text += $", {this.n_degrees_1} and {this.n_degrees_2} degrees of freedom{this.delimiter}\n";
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_fishers_f_value(this.n_degrees_1, this.n_degrees_2);
             }
             else if (this.distribution_type.Equals("CAUCHY"))
             {
-                // CAUCHY DISTRIBUTION
+                this.richTextBox1.Text += $"{this.delimiter}\n";
                 for (int i = 0; i < this.n_values; i++) this.values[i] = this.generate_cauchy_value();
             }
             else
