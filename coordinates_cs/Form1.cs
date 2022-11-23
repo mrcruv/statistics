@@ -24,6 +24,7 @@ namespace coordinates_cs
         private Random generator = new Random();
         private Bitmap bitmap1, bitmap2, bitmap3, bitmap4;
         private Graphics graphics1, graphics2, graphics3, graphics4;
+        private readonly string delimiter = "*****";
         public Form1()
         {
             InitializeComponent();
@@ -228,9 +229,11 @@ namespace coordinates_cs
                 // this.richTextBox1.Text += $"q:{quadrant} | (x, y)=({this.cartesian_coordinates[i]}, {cartesian_coordinates[i]}\n";
             }
 
+            this.richTextBox1.Text += $"{this.delimiter}begin histograms computing{this.delimiter}\n";
             compute_histogram(x_distribution, this.pictureBox3, this.graphics3, this.progressBar1, this.n_coordinates);
             compute_histogram(y_distribution, this.pictureBox4, this.graphics4, this.progressBar1, this.n_coordinates);
             compute_histogram(quadrant_distribution, this.pictureBox2, this.graphics2, this.progressBar1, this.n_coordinates);
+            this.richTextBox1.Text += $"{this.delimiter}histograms successfully computed{this.delimiter}\n";
             this.refresh_graphics();
         }
 
