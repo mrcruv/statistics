@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,6 +117,19 @@ namespace coordinates_cs
             return (radius, angle);
         }
 
+        private (float, float) generate_cartesian_coordinates()
+        {
+            float x, y, s, c;
+            do
+            {
+                x = 2 * (float)this.generator.NextDouble() - 1;
+                y = 2 * (float)this.generator.NextDouble() - 1;
+                s = (float)Math.Pow(x, 2) + (float)Math.Pow(y, 2);
+            } while (!(s > 0 && s < 1));
+            c = (float)Math.Sqrt(-2 * Math.Log(s)) / (float)Math.Sqrt(s);
+            return (x, y);
+        }
+
         private (float, float) get_cartesian_coordinates((float, float) polar_coordinates)
         {
             float x;
@@ -198,6 +212,7 @@ namespace coordinates_cs
             {
                 this.polar_coordinates[i] = this.generate_polar_coordinates();
                 this.cartesian_coordinates[i] = this.get_cartesian_coordinates(this.polar_coordinates[i]);
+                // otherwise: this.cartesian_coordinates[i] = this.generate_cartesian_coordinates();
                 x_coordinates[i] = this.cartesian_coordinates[i].Item1;
                 y_coordinates[i] = this.cartesian_coordinates[i].Item2;
             }
